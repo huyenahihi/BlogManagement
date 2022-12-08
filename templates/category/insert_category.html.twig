@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+{% block body %} 
+                <div class="right">
+                    <div class="right__content">
+                        <div class="right__title">Dashboard</div>
+                        <p class="right__desc">Insert category</p>
+                        <div class="right__formWrapper">
+                            <form action="" method="post" id="addformcategory">
+                                <div class="right__inputWrapper">
+                                    <label for="title">Title</label>
+                                    <input type="text" placeholder="Title" id="title-cate">
+                                </div>
+                                <div class="right__inputWrapper">
+                                    <label for="desc">Description</label>
+                                    <textarea name="" id="textarea-cate" cols="30" rows="10" placeholder="Something..."></textarea>
+                                </div>
+                                <div class="right__inputWrapper">
+                                    <label for="p_category">Type</label>
+                                    <select name="" id="type-category">
+                                        <option disabled selected>Select type</option>
+                                        <option value="0">Blog</option>
+                                        <option value="1">PodCast</option>
+                                    </select>
+                                </div>
+                                <button class="btn" type="submit">ADD</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+ {% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+{% block body %}
+	
+	<div class="right__title">Dashboard</div>
+	<div class="right__search">
+		<p class="right__desc">View posts</p>
+		<form class="right__inputSearch" action="{{ path('search_post')}}" method="post">
+		<input placeholder="Enter name ..." type="search" name="keyword">
+        <i class="las la-search"></i>
+	</form>
+	</div>
+	<div class="right__table">
+		<div class="right__tableWrapper">
+			<table>
+				<thead>
+					<tr>
+						<th>STT</th>
+						<th>Title</th>
+						<th>Image</th>
+						<th>Category</th>
+						<th>Creator</th>
+						<th>Content</th>
+						<th>Update</th>
+						<th>Delete</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for post in posts %}
+						<tr>
+							<th>{{post.id}}</th>
+							<th>{{post.title}}</th>
+							<th><img data-lable="Image" src="{{post.image}}" alt="" width="90" height="90"></th>
+							<th>{{post.category.title}}</th>
+							<th>{{post.creator.name}}</th>
+							<th>{{post.content}}</th>
+							<th>
+								<a href="{{http://}}">Update</a>
+							</th>
+							<th>
+								<a href="{{ path ('post_delete', {'id': post.id})}}">Remove</a>
+							</th>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<a class="right__tableMore">
+			<p>View all</p>
+			<img src="{{asset('assets/arrow-right-black.svg')}}" alt="">
+		</a>
+	</div>
+{% endblock %}

@@ -1,0 +1,160 @@
+{% extends "base.html.twig" %}
+{% block body %} 
+                <div class="right">
+                    <div class="right__content">
+                        <div class="right__title">Dashboard</div>
+                        <p class="right__desc">Edit post</p>
+                        <div class="right__formWrapper">
+                            <!-- <form  id="updateform"> -->
+                                <div class="right__inputWrapper">
+                                    <label for="title">Title</label>
+                                    <input type="text" id="title" placeholder="Tiêu đề">
+                                </div>
+                                <div class="right__inputWrapper">
+                                    <label for="image">Image</label>
+                                    <input type="file" id="fileblog" onchange="ImagesFileAsURL()">
+                                    <img style="width: 150px; height: 150px; margin: 10px 0 0 0" src="" id="imageblog"/>
+                                    <img  style="display: none;" src="" id="imageblog2"/>
+                                </div>
+                                <div class="right__inputWrapper">
+                                    <label for="p_category">Category</label>
+                                    <select name="" id="postcategoryinsert">
+                                     
+                                    </select>
+                                </div>
+                                <div class="right__inputWrapper">
+                                    <label for="p_category">Rank</label>
+                                    <select name="" id="ranker">
+                                    </select>
+                                </div>
+                                <div class="right__inputWrapper">
+                                    <label for="desc">Content</label>
+                                    <textarea name="" id="descriptonblog" cols="30" rows="10" placeholder="Write something..."></textarea>
+                                </div>
+                                <input type="hidden" name="view"  id="view" value=""/>
+                                <input type="hidden" name="love"  id="love" value=""/>
+                                <input type="hidden" name="cmt"  id="cmt" value=""/>
+                                <button class="btn" onclick="save()" type="submit">UPDATE</button>
+                            <!-- </form> -->
+                        </div>
+                    </div>
+                </div>
+           {% endblock %}
+    <script src="js/main.js"></script>
+    <script src="API/index.js"></script>
+<script>
+     let idblog = sessionStorage.getItem('id-blog');
+    console.log(idblog);
+
+   
+    // get api ra podcast
+    var urlpostdetails = 'http://localhost:8000/post';
+    fetch(urlpostdetails + '/' + idblog)
+      .then(response => response.json())
+      .then(function (responses) {
+        document.getElementById('ranker').value = responses.ranker;
+        document.querySelector('#postcategoryinsert').value = responses.id_category;
+        document.getElementById('descriptonblog').value = responses.content;
+        document.getElementById('title').value = responses.title;
+        document.getElementById('imageblog').setAttribute('src', responses.image);
+        document.getElementById('imageblog2').setAttribute('src', responses.image);
+        document.getElementById('view').value = responses.numview;
+        document.getElementById('love').value= responses.numlove;
+        document.getElementById('cmt').value= responses.numcomment;
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+      
+    //   const fileupload = document.getElementById("fileblog");
+    //     const image = document.getElementById("imageblog");
+
+    //     fileupload.addEventListener("change", (e) => {
+    //     if (e.target.files.length) {
+    //         alert(e.target);
+    //         const src =e.target.files[0];
+    //         image.src = src;
+    //     }
+     
+    //     });
+    document.getElementById("fileblog").onchange = function () {
+    var reader = new FileReader();
+
+    reader.onload = function (e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("imageblog").src = e.target.result;
+        var getUrl = window.location;
+    var localhost = getUrl.protocol + "//" + getUrl.host + "/";
+    document.getElementById("imageblog2").src= localhost + "WebsitePodcast/IMG/" + (document.getElementById("fileblog").value).split("\\").pop();
+    };
+
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+   
+};
+    // function ImagesFileAsURL() {
+    //             var fileSelected = document.getElementById('fileblog').files;
+    //             if (fileSelected.length > 0) {
+    //                 var fileToLoad = fileSelected[0];
+    //                 var fileReader = new FileReader();
+    //                 fileReader.onload = function(fileLoaderEvent) {
+    //                     var srcData = fileLoaderEvent.target.result;
+    //                     // var newImage = document.createElement('img');
+    //                     // newImage.src = srcData;
+    //                     document.getElementById('imageblog').setAttribute('src', srcData);
+    //                 }
+    //                 fileReader.readAsDataURL(fileToLoad);
+    //             }
+    //         }
+  
+    const formpost = document.getElementById('updateform')
+        var postApiBlog= "http://localhost:8000/post";
+     
+        function save(){
+        let input = (document.getElementById('fileblog').value).split("\\").pop();
+           
+           let title = document.getElementById('title').value;
+           let content = document.getElementById('descriptonblog').value;
+           let postcategoryinsert = document.getElementById('postcategoryinsert').value;
+           let ranker = document.getElementById('ranker').value;
+           let love = document.getElementById('love').value;
+           let view = document.getElementById('view').value;
+           let cmt = document.getElementById('cmt').value;
+           let inputimage = (document.getElementById('imageblog2').getAttribute('src'));
+           let id = sessionStorage.getItem('idadmin');
+           let name = sessionStorage.getItem('useradmin');
+           var datas =  {
+               "id_user": id,
+               "id_category": postcategoryinsert,
+               "user": name,
+               "title": title,
+               "image": inputimage,
+               "content": content,
+               "numview": view,
+               "numcomment": cmt,
+               "numlove":love,
+               "islove": null,
+               "isgroup": null,
+               "idgroup": null,
+               "ranker": ranker
+   };
+            VALUE = JSON.stringify(datas);
+            var urlpostdetails = 'http://localhost:8000/post/'+idblog;
+            fetch(urlpostdetails, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json', 
+            },
+            body: VALUE
+        }).then(response => response.json()).then(data => {
+            console.log(data);
+            window.location.href = "view_post.html"
+            })
+            .catch((err) => {
+            console.error(err);
+            });
+        }
+
+  </script>
+</body>
+</html>
