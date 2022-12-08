@@ -18,7 +18,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class BlogController extends AbstractController
 {
-    #[Route('/index', name: 'app_blog')]
+    #[Route('/index', name: 'admin_index')]
     public function index(): Response
     {
         return $this->render('index.html.twig', [
