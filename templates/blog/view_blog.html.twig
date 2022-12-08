@@ -4,6 +4,7 @@
 	<div class="right__title">Dashboard</div>
 	<div class="right__search">
 		<p class="right__desc">View posts</p>
+		
 		<form class="right__inputSearch" action="{{ path('search_post')}}" method="post">
 		<input placeholder="Enter name ..." type="search" name="keyword">
         <i class="las la-search"></i>
@@ -15,37 +16,44 @@
 				<thead>
 					<tr>
 						<th>STT</th>
-						<th>Title</th>
+						<th>
+						<a class="right__inputSearch" href="{{path('sort_post_name_asc')}}"><img width=" 15px" height=" 15px" src="assets/317963117_1025264761522285_2451292146113019708_n.png" alt=""></a>
+						Title
+						<a class="right__inputSearch" href="{{path('sort_post_name_desc')}}"><img width=" 15px" height=" 15px" src="assets/317265709_526740946038610_3322117904155097230_n.png" alt=""></a>
+						</th>
 						<th>Image</th>
 						<th>Category</th>
-						<th>Creator</th>
+						<th>Course</th>
 						<th>Content</th>
-						<th>Update</th>
-						<th>Delete</th>
+						<th colspan = "2">Actions</th>
 					</tr>
 				</thead>
 
-				<tbody>
+				<tbody class = "tag">
 					{% for post in posts %}
 						<tr>
 							<th>{{post.id}}</th>
 							<th>{{post.title}}</th>
 							<th><img data-lable="Image" src="{{post.image}}" alt="" width="90" height="90"></th>
-							<th>{{post.category.title}}</th>
-							<th>{{post.creator.name}}</th>
+							<th style="text-align:left">{% for category in post.category %}
+							{{ category.title }}
+							<br>
+							{% endfor %}
+							</th> 
+							<th>{{post.course.title}}</th>
 							<th>{{post.content}}</th>
 							<th>
-								<a href="{{http://}}">Update</a>
+								<a href="http://"><img class =" ___icon" src="assets/icon-edit.svg" alt=""></a>
 							</th>
 							<th>
-								<a href="{{ path ('post_delete', {'id': post.id})}}">Remove</a>
+								<a href="{{ path ('post_delete', {'id': post.id})}}"><img class="___icon" src="assets/icon-trash.svg" alt=""></a>
 							</th>
 						</tr>
 					{% endfor %}
 				</tbody>
 			</table>
 		</div>
-		<a class="right__tableMore">
+		<a class="right__tableMore" href="{{ path ('view_post')}}">
 			<p>View all</p>
 			<img src="{{asset('assets/arrow-right-black.svg')}}" alt="">
 		</a>

@@ -63,4 +63,38 @@ class BlogRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+public function sortBlogByIdDesc()
+{
+    
+    return $this->createQueryBuilder('post')
+        ->orderBy('post.id', 'DESC')
+        ->getQuery()
+        ->getResult();
+}
+
+public function sortBlogNameAsc()
+{
+    return $this->createQueryBuilder('post')
+        ->orderBy('post.title', 'ASC')
+        ->getQuery()
+        ->getResult();
+}
+
+public function sortpostNameDesc()
+{
+    return $this->createQueryBuilder('post')
+        ->orderBy('post.title', 'DESC')
+        ->getQuery()
+        ->getResult();
+}
+
+public function searchPost($title) 
+{
+    return $this->createQueryBuilder('post')
+        ->andWhere('post.title LIKE :n')
+        ->setParameter('n', '%' . $title . '%')
+        ->getQuery()
+        ->getResult()
+    ;
+}
 }

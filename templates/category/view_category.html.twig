@@ -12,13 +12,31 @@
                                             <th>STT</th>
                                             <th>Title</th>
                                             <th>Description</th>
-                                            <th>Update</th>
-                                            <th>Delete</th>
+                                            <th>List Post</th>
+                                            <th colspan="2">Action</th>
                                         </tr>
                                     </thead>
 
-                                    <tbody id="list-category">
-                                     
+                                    <tbody class="tag" id="list-category">
+                                     {% for category in categories %}
+						<tr>
+							<th>{{category.id}}</th>
+							<th>{{category.title}}</th>
+                            <th>{{category.description}}</th>
+							<th style="text-align:center">
+                            {% for post in category.blogs %}
+							{{ post.title }}
+							<br>
+							{% endfor %}
+							</th> 
+							<th>
+								<a href="http://"><img class =" ___icon" src="assets/icon-edit.svg" alt=""></a>
+							</th>
+							<th>
+								<a href="{{ path ('category_delete', {'id': category.id})}}"><img class="___icon" src="assets/icon-trash.svg" alt=""></a>
+							</th>
+						</tr>
+					{% endfor %}
                                     </tbody>
                                 </table>
                             </div>
