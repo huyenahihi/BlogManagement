@@ -8,19 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class WebController extends AbstractController
 {
-     
-    #[Route('/', name: 'signin')]
-    public function signin(): Response
-    {
-        return $this->render('WebUser/signin.html.twig');
-    }
 
-    #[Route('/signup', name: 'signup')]
-    public function signup(): Response
-    {
-        return $this->render('WebUser/signup.html.twig');
-    }
-     
     #[Route('/homepage', name: 'homepage')]
     public function homepage(): Response
     {
@@ -57,8 +45,8 @@ class WebController extends AbstractController
     public function courses(): Response
     {
         return $this->render('WebUser/courses.html.twig');
-    }  
-    
+    }
+
     #[Route('/course_detail', name: 'course_detail')]
     public function course_detail(): Response
     {
@@ -77,4 +65,5 @@ class WebController extends AbstractController
     {
         return $this->render('WebUser/public_profile.html.twig');
     }
+
 }

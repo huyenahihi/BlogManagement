@@ -23,8 +23,7 @@ class UserFixtures extends Fixture
         $user->setRoles(["ROLE_ADMIN"]); //security.yaml
       
         $user->setPassword($this->hasher->hashPassword($user,"123456"));  //__construct
-        $user->setEmail("thuuhuyenn2001@gmail.com"); 
-        $user->setPhone("0345795484"); 
+       
         $manager->persist($user);
 
         //tạo tài khoản với ROLE_CUSTOMER
@@ -32,8 +31,7 @@ class UserFixtures extends Fixture
         $user->setUsername("customer");
         $user->setRoles(["ROLE_CUSTOMER"]);
         $user->setPassword($this->hasher->hashPassword($user,"123456"));
-        $user->setEmail("thuuhuyenn2001@gmail.com"); 
-        $user->setPhone("0345795484"); 
+     
         $manager->persist($user);
 
         $manager->flush();
