@@ -11,9 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class CategoryController extends AbstractController
-{
+{   
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/insertCategory', name: 'insert_category')]
     public function insertCategory(Request $request, ManagerRegistry $managerRegistry): Response
     {
@@ -34,6 +36,7 @@ class CategoryController extends AbstractController
             ]
         );
     }
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/viewCategory', name: 'view_category')]
     public function viewCategory(CategoryRepository $categoryRepository): Response
     {
@@ -42,6 +45,8 @@ class CategoryController extends AbstractController
             'categories' => $category,
         ]);
     }
+    #[IsGranted("ROLE_ADMIN")]
+
     #[Route('/deletecategory/{id}', name: 'category_delete')]
     public function deleteCategory($id, CategoryRepository $categoryRepository, ManagerRegistry $managerRegistry)
     {

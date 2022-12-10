@@ -18,6 +18,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 
 class BlogController extends AbstractController
 {
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/index', name: 'admin_index')]
     public function index(): Response
     {
@@ -26,7 +27,7 @@ class BlogController extends AbstractController
         ]);
     }
 
-
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/addPost', name: 'insert_post')]
     public function add(Request $request, ManagerRegistry $managerRegistry)
     {
@@ -82,7 +83,7 @@ class BlogController extends AbstractController
         return $this->render('blog/insert_blog.html.twig', [
         ]);
     }
-
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/viewPost', name: 'view_post')]
     public function ViewPost( BlogRepository $blogRepository
         ): Response
@@ -93,7 +94,7 @@ class BlogController extends AbstractController
         ]);
     }
 
-
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/delete/{id}', name: 'post_delete')]
     public function deletePost($id, BlogRepository $blogRepository, ManagerRegistry $managerRegistry)
     {
@@ -109,7 +110,7 @@ class BlogController extends AbstractController
         return $this->redirectToRoute('view_post');
     }
 
-
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/asc', name: 'sort_post_name_asc')]
     public function sortNameAsc(blogRepository $blogRepository)
     {
@@ -122,7 +123,7 @@ class BlogController extends AbstractController
         );
     }
 
-
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/desc', name: 'sort_post_name_desc')]
     public function sortNameDesc(BlogRepository $blogRepository)
     {
@@ -134,7 +135,7 @@ class BlogController extends AbstractController
             ]
         );
     }
-
+    #[IsGranted("ROLE_ADMIN")]
     #[Route('/search', name: 'search_post')]
     public function searchPost(Request $request, BlogRepository $blogRepository)
     {

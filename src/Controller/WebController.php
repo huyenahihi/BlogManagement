@@ -5,41 +5,52 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class WebController extends AbstractController
 {
 
+    // #[IsGranted("CUSTOMER")]
     #[Route('/homepage', name: 'homepage')]
     public function homepage(): Response
     {
         return $this->render('WebUser/homepage.html.twig');
     }
+
+    // #[IsGranted("CUSTOMER")]
     #[Route('/blog', name: 'blog')]
     public function blog(): Response
     {
         return $this->render('WebUser/blog.html.twig');
     }
+    // #[IsGranted("CUSTOMER")]
     #[Route('/blog_detail', name: 'blog_detail')]
     public function blog_detail(): Response
     {
         return $this->render('WebUser/blog_detail.html.twig');
     }
+
+    // #[IsGranted("CUSTOMER")]
     #[Route('/blog_title', name: 'blog_title')]
     public function blog_title(): Response
     {
         return $this->render('WebUser/blog_title.html.twig');
     }
 
+    // #[IsGranted("CUSTOMER")]
     #[Route('/podcast', name: 'podcast')]
     public function podcast(): Response
     {
         return $this->render('WebUser/podcast.html.twig');
     }
+
+    // #[IsGranted("CUSTOMER")]
     #[Route('/podcast_detail', name: 'podcast_detail')]
     public function podcast_detail(): Response
     {
         return $this->render('WebUser/podcast_detail.html.twig');
     }
+
 
     #[Route('/courses', name: 'courses')]
     public function courses(): Response

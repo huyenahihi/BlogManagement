@@ -10,9 +10,12 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class PodcastController extends AbstractController
 {
+    #[IsGranted("ROLE_ADMIN")]
+
     #[Route('/insertPodcast', name: 'insert_podcast')]
     public function insertPodcast(Request $request, ManagerRegistry $managerRegistry): Response
     {
@@ -33,6 +36,8 @@ class PodcastController extends AbstractController
             ]
         );
     }
+    #[IsGranted("ROLE_ADMIN")]
+
     #[Route('/viewPodcast', name: 'view_podcast')]
     public function viewPodcast(PodcastRepository $podcastRepository): Response
     {
@@ -41,6 +46,8 @@ class PodcastController extends AbstractController
             'podcasts' => $podcast,
         ]);
     }
+    #[IsGranted("ROLE_ADMIN")]
+
     #[Route('/deletepodcast/{id}', name: 'podcast_delete')]
     public function deletePodcast($id, PodcastRepository $podcastRepository, ManagerRegistry $managerRegistry)
     {
