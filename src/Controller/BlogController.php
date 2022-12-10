@@ -30,10 +30,10 @@ class BlogController extends AbstractController
     #[Route('/addPost', name: 'insert_post')]
     public function add(Request $request, ManagerRegistry $managerRegistry)
     {
-        // $post = new Blog;
-        // $form = $this->createForm(PostType::class, $post);
-        // $form->handleRequest($request);
-        // if ($form->isSubmitted() && $form->isValid()) {
+        $post = new Blog;
+        $form = $this->createForm(PostType::class, $post);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
             // $img = $post->getImage();
             // $imgName = uniqid();
             // $imgExtension = $img->guessExtension();
@@ -73,12 +73,12 @@ class BlogController extends AbstractController
             //     $post->setImage($newImg);
 
             // }
-            // $manager = $managerRegistry->getManager();
-            // $manager->persist($post);
-            // $manager->flush();
-            // $this->addFlash('Success', 'Add succeed !');
-        //     return $this->redirectToRoute('view_post');
-        // }
+            $manager = $managerRegistry->getManager();
+            $manager->persist($post);
+            $manager->flush();
+            $this->addFlash('Success', 'Add succeed !');
+            return $this->redirectToRoute('view_post');
+         }
         return $this->render('blog/insert_blog.html.twig', [
         ]);
     }

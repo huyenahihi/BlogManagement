@@ -1,8 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Muli:wght@200;300;400;500;600;700;800;900&display=swap");
-.tag {
-  text-transform: none;
-  font-weight: lighter;
-}
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +9,34 @@
   color: inherit;
   box-sizing: border-box;
 }
+.app-logo {
+  animation: app-logo-spin infinite 5s linear
+}
 
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg)
+  }
+  to {
+    transform: rotate(360deg)
+  }
+}
+.tag {
+  text-transform: none;
+  font-weight: lighter;
+}
+.___icon{
+  width: 25px;
+  height: 25px;
+
+}
+.___icon:hover{
+  color: cornflowerblue;
+}
+.az{
+
+  margin-left: 0px;
+}
 *:focus {
   outline: 0;
 }
@@ -251,7 +274,7 @@ body {
 }
 
 .left__menuItem.open .left__text {
-  height: 140px;
+  height: 70px;
   padding-top: 10px;
 }
 
@@ -1264,17 +1287,5 @@ body {
 
 .right__inputSearch i:hover{
   color:#caa52a;
-}
-.___icon{
-  width: 25px;
-  height: 25px;
-
-}
-.___icon:hover{
-  color: cornflowerblue;
-}
-.az{
-
-  margin-left: 0px;
 }
 /*# sourceMappingURL=main.css.map */

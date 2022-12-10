@@ -43,10 +43,10 @@
 							<th>{{post.course.title}}</th>
 							<th>{{post.content}}</th>
 							<th>
-								<a href="http://"><img class =" ___icon" src="assets/icon-edit.svg" alt=""></a>
+								<img class =" ___icon" src="assets/pen-to-square-solid.svg" alt="">
 							</th>
 							<th>
-								<a href="{{ path ('post_delete', {'id': post.id})}}"><img class="___icon" src="assets/icon-trash.svg" alt=""></a>
+								<a href="{{ path ('post_delete', {'id': post.id})}}"><img class="___icon" src="assets/trash-can-solid.svg" alt=""></a>
 							</th>
 						</tr>
 					{% endfor %}
