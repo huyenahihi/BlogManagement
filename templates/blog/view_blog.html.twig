@@ -23,7 +23,6 @@
 						</th>
 						<th>Image</th>
 						<th>Category</th>
-						<th>Course</th>
 						<th>Content</th>
 						<th colspan = "2">Actions</th>
 					</tr>
@@ -34,16 +33,15 @@
 						<tr>
 							<th>{{post.id}}</th>
 							<th>{{post.title}}</th>
-							<th><img data-lable="Image" src="{{post.image}}" alt="" width="90" height="90"></th>
+							<th><a href="{{path('blog_detail_admin', {'id': post.id})}}"><img data-lable="Image" src="{{asset('IMG/Blogs/'~post.image)}}" alt="" width="90" height="90"></a></th>
 							<th style="text-align:left">{% for category in post.category %}
 							{{ category.title }}
 							<br>
 							{% endfor %}
 							</th> 
-							<th>{{post.course.title}}</th>
 							<th>{{post.content}}</th>
 							<th>
-								<img class =" ___icon" src="assets/pen-to-square-solid.svg" alt="">
+								<a href="{{ path ('edit_post', {'id': post.id})}}"><img class =" ___icon" src="assets/pen-to-square-solid.svg" alt=""></a>
 							</th>
 							<th>
 								<a href="{{ path ('post_delete', {'id': post.id})}}"><img class="___icon" src="assets/trash-can-solid.svg" alt=""></a>
@@ -53,7 +51,7 @@
 				</tbody>
 			</table>
 		</div>
-		<a class="right__tableMore" href="{{ path ('view_post')}}">
+		<a style:"text-decoration-none" class="right__tableMore" href="{{ path ('view_post')}}">
 			<p>View all</p>
 			<img src="{{asset('assets/arrow-right-black.svg')}}" alt="">
 		</a>

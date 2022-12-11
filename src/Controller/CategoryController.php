@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+#[IsGranted("ROLE_ADMIN")]
 class CategoryController extends AbstractController
 {   
     #[IsGranted("ROLE_ADMIN")]

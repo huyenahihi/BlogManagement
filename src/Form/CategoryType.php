@@ -16,14 +16,15 @@ class CategoryType extends AbstractType
         $builder
             ->add('title')
             ->add('description')
-            ->add('blogs',
-            EntityType::class,
-            [
-                'class' => Blog::class,
-                'choice_label' => 'title',
-                'multiple' => true,
-                'expanded' => false,
-            ])
+            // ->add('blogs',
+            // EntityType::class,
+            // [
+            //     'class' => Blog::class,
+            //     'required' => true,
+            //     'choice_label' => 'title',
+            //     'multiple' => true,
+            //     'expanded' => false,
+            // ])
         ;
     }
 

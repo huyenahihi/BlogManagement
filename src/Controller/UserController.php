@@ -7,9 +7,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
+#[IsGranted("ROLE_ADMIN")]
 class UserController extends AbstractController
 {
-    #[IsGranted("ROLE_ADMIN")]
+    
 
     #[Route('/user', name: 'app_user')]
     public function index(): Response
